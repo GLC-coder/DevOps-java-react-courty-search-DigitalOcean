@@ -44,7 +44,7 @@ update apt
 apt install openjdk-8-jre-headless
 ```
 
-### Build Jar file
+### Step 3 : Build Jar file
 
 #Open the Java-React App in the Visual Studio Code and build the Java-React App into Jar file
 
@@ -52,7 +52,7 @@ apt install openjdk-8-jre-headless
 ./gradlew build
 ```
 
-### Step 3 : Copy built Java-React App file into the remote server
+### Step 4 : Copy built Java-React App file into the remote server
 
 #Secure copy the built Java-React App file from local machine to server. Execute from project's root folder
 
@@ -60,7 +60,7 @@ apt install openjdk-8-jre-headless
 scp -i .ssh/id_rsa build/libs/java-react-app-example.jar root@128.199.214.234:/root
 ```
 
-### Step 4: Run the Java-React App on the Remote Server
+### Step 5 : Run the Java-React App on the Remote Server
 
 #ssh into droplet / remote server as root user
 
@@ -92,15 +92,15 @@ java -jar java-react-app-example.jar &
 kill <PID>
 ```
 
-### Step 5 : Update the firewall rules
+### Step 6 : Update the firewall rules
 
 1-Update the firewall rules with the server listening port number: 7071 for all ip address in inbound traffic.
 
-### Step 6 : Visit the Java-React App with the public ipv4 and port number of the server.
+### Step 7 : Visit the Java-React App with the public ipv4 and port number of the server.
 
 URL : http://128.199.214.234:7071/
 
-### Step 7 : Add Normal Linux User
+### Step 8 : Add Normal Linux User
 
 #Add a normal linux user and assign the user with root privileges.
 
