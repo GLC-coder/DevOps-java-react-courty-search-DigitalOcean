@@ -1,21 +1,144 @@
-# Java-React Example
+# Java-React Country Search project deployed on Droplets DigitalOcean
 
-An example of how to use JS frontend to consume an endpoint written in Java.
+Create an server and deploy the application developed in React, Redux and Java on Droplets DigitalOcean
 
-## Frontend technologies
+## Technologies used:
 
-- [React](https://facebook.github.io/react/) - UI Library
-- [Redux](http://redux.js.org/) - State container
+DigitalOcean, Linux, Java, Gradle, React, Redux
 
-## Additional information
+## Project Description:
 
-This project is a part of a [presentation](https://docs.google.com/presentation/d/1-yZhsM43cyWWDVn6EUtK_wc39FAv-19_jwsKXlTe2o8/edit?usp=sharing)
+1- Setup and configure a server on DigitalOcean.
 
-Related projects:
+2- Configure SSH on the firewall for the server.
 
-- [react-intro](https://github.com/mendlik/react-intro) - Introduction to react and redux.
-- [java-webpack-example](https://github.com/mendlik/java-webpack-example) - Advanced example showing how to use a module bundler in  a Java project.
+3- Create and configure a new Linux user on the Droplet for best security practice.
 
-Tip: [How to enable LiveReload in IntelliJ](http://stackoverflow.com/a/35895848/2284884)
+4- Deploy and run a Java Gradle application on the Droplet.
 
-This project uses gradle version: 7.4
+## Instructions
+
+### Step 1 : Create a server on DigitalOcean
+
+1- Sign up an account on the DigitalOcean and configure SSH keys.
+
+2- Create a Droplet for Java-React Country Search Project with Linux Ubuntu distribution in Singapore Region by configuring the authentication method with SSH Key instead of Password.
+
+3- Turn on the firewall for the server and configure the SSH with port 22 and specific ip address for Inbound traffics.
+
+### Step 2 : Prepare the server on DigitalOcean
+
+<!-- ssh into the newly created server -->
+
+```
+ssh -i .ssh/id_rsa root@128.199.214.234
+
+<!-- update apt and install java 8 on the server -->
+
+```
+
+update apt
+
+```
+apt install openjdk-8-jre-headless
+
+### Build Jar file
+
+<!-- Open the Java-React App in the Visual Studio Code and build the Java-React App into Jar file  -->
+
+```
+
+./gradlew build
+
+### Step 3 : Copy built Java-React App file into the remote server
+
+<!-- Secure copy the built Java-React App file from local machine to server. Execute from project's root folder -->
+
+```
+scp -i .ssh/id_rsa build/libs/java-react-app-example.jar root@128.199.214.234:/root
+
+```
+
+### Step 4: Run the Java-React App on the Remote Server
+
+<!-- ssh into droplet / remote server as root user -->
+
+```
+
+ssh -i .ssh/id_rsa root@128.199.214.234
+```
+
+<!-- run the Java-React App on the Remote Server as the attached mode-->
+
+```
+java -jar java-react-app-example.jar
+```
+
+<!-- run the Java-React App on the Remote Server as detached mode-->
+
+```
+<!-- Get the current running processes info, including the Port and process ID  -->
+```
+
+netstat -lpnt
+
+```
+
+java -jar java-react-app-example.jar &
+```
+
+<!-- Stop run the Java-React App from the detached mode -->
+
+```
+kill <PID>
+
+```
+
+### Step 5 : Update the firewall rules
+
+1-Update the firewall rules with the server listening port number: 7071 for all ip address in inbound traffic.
+
+### Step 6 : Visit the Java-React App with the public ipv4 and port number of the server.
+
+URL : http://128.199.214.234:7071/
+
+### Step 7 : Add Normal Linux User
+
+<!-- Add a normal linux user and assign the user with root privileges. -->
+
+```
+adduser jason
+```
+
+<!-- Assign the user into sudo group -->
+
+```
+usermod -aG sudo jason
+```
+
+<!-- Add the public key into .ssh folder at the jason root folder -->
+
+```
+mkdir .ssh
+```
+
+<!-- copy the public key of the computer into authorized_keys under the .ssh folder via Vim editor -->
+
+```
+sudo vim .ssh/authorized_keys
+```
+
+<!-- Exit the server from root user and login with the new created user -->
+
+```
+exit
+```
+
+```
+exit
+```
+
+```
+ssh .i .ssh/id_rsa jason@128.199.214.234
+
+```
