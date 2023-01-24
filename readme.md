@@ -64,19 +64,21 @@ scp -i .ssh/id_rsa build/libs/java-react-app-example.jar root@128.199.214.234:/r
 
 ### Step 5 : Run the Java-React App on the Remote Server
 
-#ssh into droplet / remote server as root user
+#Ssh into droplet / remote server as root user
 
 ```
 ssh -i .ssh/id_rsa root@128.199.214.234
 ```
 
-#run the Java-React App on the Remote Server as the attached mode
+#Run the Java-React App on the Remote Server as the attached mode
 
 ```
 java -jar java-react-app-example.jar
 ```
 
 #Get the current running processes info, including the Port and process ID
+
+![image](https://github.com/GLC-coder/DevOps-java-react-courty-search-DigitalOcean/blob/master/IMG/Screenshot%202023-01-25%20at%2012.02.49%20am.png)
 
 ```
 netstat -lpnt
@@ -96,12 +98,15 @@ kill <PID>
 
 ### Step 6 : Update the firewall rules
 
+![image](https://github.com/GLC-coder/DevOps-java-react-courty-search-DigitalOcean/blob/master/IMG/Screenshot%202023-01-24%20at%2011.48.34%20pm.png)
+
 1-Update the firewall rules with the server listening port number: 7071 for all ip address in inbound traffic.
+![image](https://github.com/GLC-coder/DevOps-java-react-courty-search-DigitalOcean/blob/master/IMG/Screenshot%202023-01-24%20at%2011.53.09%20pm.png)
 
 ### Step 7 : Visit the Java-React App with the public ipv4 and port number of the server.
 
 URL : http://128.199.214.234:7071/
-
+![image](https://github.com/GLC-coder/DevOps-java-react-courty-search-DigitalOcean/blob/master/IMG/Screenshot%202023-01-24%20at%2011.55.47%20pm.png)
 ### Step 8 : Add Normal Linux User
 
 #Add a normal linux user and assign the user with root privileges.
@@ -140,5 +145,5 @@ exit
 
 ```
 ssh .i .ssh/id_rsa jason@128.199.214.234
-
 ```
+![image](https://github.com/GLC-coder/DevOps-java-react-courty-search-DigitalOcean/blob/master/IMG/Screenshot%202023-01-25%20at%2012.11.08%20am.png)
