@@ -28,70 +28,68 @@ DigitalOcean, Linux, Java, Gradle, React, Redux
 
 ### Step 2 : Prepare the server on DigitalOcean
 
-<!-- ssh into the newly created server -->
+#ssh into the newly created server
 
 ```
 ssh -i .ssh/id_rsa root@128.199.214.234
-
-<!-- update apt and install java 8 on the server -->
-
 ```
 
+#update apt and install java 8 on the server
+
+```
 update apt
+```
 
 ```
 apt install openjdk-8-jre-headless
+```
 
 ### Build Jar file
 
-<!-- Open the Java-React App in the Visual Studio Code and build the Java-React App into Jar file  -->
+#Open the Java-React App in the Visual Studio Code and build the Java-React App into Jar file
 
 ```
-
 ./gradlew build
+```
 
 ### Step 3 : Copy built Java-React App file into the remote server
 
-<!-- Secure copy the built Java-React App file from local machine to server. Execute from project's root folder -->
+#Secure copy the built Java-React App file from local machine to server. Execute from project's root folder
 
 ```
 scp -i .ssh/id_rsa build/libs/java-react-app-example.jar root@128.199.214.234:/root
-
 ```
 
 ### Step 4: Run the Java-React App on the Remote Server
 
-<!-- ssh into droplet / remote server as root user -->
+#ssh into droplet / remote server as root user
 
 ```
-
 ssh -i .ssh/id_rsa root@128.199.214.234
 ```
 
-<!-- run the Java-React App on the Remote Server as the attached mode-->
+#run the Java-React App on the Remote Server as the attached mode
 
 ```
 java -jar java-react-app-example.jar
 ```
 
-<!-- run the Java-React App on the Remote Server as detached mode-->
+#Get the current running processes info, including the Port and process ID
 
 ```
-<!-- Get the current running processes info, including the Port and process ID  -->
-```
-
 netstat -lpnt
-
 ```
 
+#run the Java-React App on the Remote Server as detached mode
+
+```
 java -jar java-react-app-example.jar &
 ```
 
-<!-- Stop run the Java-React App from the detached mode -->
+#Stop run the Java-React App from the detached mode
 
 ```
 kill <PID>
-
 ```
 
 ### Step 5 : Update the firewall rules
@@ -104,31 +102,31 @@ URL : http://128.199.214.234:7071/
 
 ### Step 7 : Add Normal Linux User
 
-<!-- Add a normal linux user and assign the user with root privileges. -->
+#Add a normal linux user and assign the user with root privileges.
 
 ```
 adduser jason
 ```
 
-<!-- Assign the user into sudo group -->
+#Assign the user into sudo group
 
 ```
 usermod -aG sudo jason
 ```
 
-<!-- Add the public key into .ssh folder at the jason root folder -->
+#Add the public key into .ssh folder at the jason root folder
 
 ```
 mkdir .ssh
 ```
 
-<!-- copy the public key of the computer into authorized_keys under the .ssh folder via Vim editor -->
+#Copy the public key of the computer into authorized_keys under the .ssh folder via Vim editor
 
 ```
 sudo vim .ssh/authorized_keys
 ```
 
-<!-- Exit the server from root user and login with the new created user -->
+#Exit the server from root user and login with the new created user
 
 ```
 exit
