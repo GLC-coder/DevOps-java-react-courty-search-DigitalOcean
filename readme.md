@@ -1,5 +1,7 @@
 # Java-React Country Search project deployed on Droplets DigitalOcean
 
+Java-React App URL : http://128.199.214.234:7071
+
 Create an server and deploy the application developed in React, Redux and Java on Droplets DigitalOcean
 
 ## Technologies used:
